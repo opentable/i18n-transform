@@ -1,0 +1,24 @@
+{
+  "name": "i18n-transform",
+  "version": "1.0.0",
+  "description": "take a json object with an i18n section and merge the fields to produce an language specific version",
+  "main": "index.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/andyroyle/i18n-transform.git"
+  },
+  "keywords": [
+    "json",
+    "i18n",
+    "languages"
+  ],
+  "author": "Andy Royle <ajroyle@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andyroyle/i18n-transform/issues"
+  },
+  "homepage": "https://github.com/andyroyle/i18n-transform"
+}
