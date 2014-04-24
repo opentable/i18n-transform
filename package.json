@@ -1,7 +1,7 @@
 {
   "name": "i18n-transform",
   "version": "1.0.0",
-  "description": "take a json object with an i18n section and merge the fields to produce an language specific version",
+  "description": "apply an i18n transform to a json object",
   "main": "index.js",
   "scripts": {
     "test": "grunt test"
@@ -11,14 +11,23 @@
     "url": "git://github.com/andyroyle/i18n-transform.git"
   },
   "keywords": [
-    "json",
     "i18n",
-    "languages"
+    "json"
   ],
   "author": "Andy Royle <ajroyle@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/andyroyle/i18n-transform/issues"
   },
-  "homepage": "https://github.com/andyroyle/i18n-transform"
+  "homepage": "https://github.com/andyroyle/i18n-transform",
+  "devDependencies": {
+    "grunt": "^0.4.4",
+    "grunt-cli": "^0.1.13",
+    "grunt-mocha-test": "^0.10.0",
+    "should": "^3.2.0",
+    "grunt-contrib-jshint": "^0.9.2"
+  },
+  "dependencies": {
+    "hoek": "^2.1.0"
+  }
 }
