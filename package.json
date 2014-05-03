@@ -1,6 +1,6 @@
 {
   "name": "i18n-transform",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "apply an i18n transform to a json object",
   "main": "index.js",
   "scripts": {
