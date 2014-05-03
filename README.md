@@ -1,5 +1,6 @@
-i18n-transform
-==============
+#i18n-transform
+[![Build Status](https://travis-ci.org/andyroyle/i18n-transform.png?branch=master)](https://travis-ci.org/andyroyle/i18n-transform) [![NPM version](https://badge.fury.io/js/i18n-transform.png)](http://badge.fury.io/js/i18n-transform) ![Dependencies](https://david-dm.org/andyroyle/i18n-transform.png)
+---
 
 apply i18n transforms to a json object.
 
