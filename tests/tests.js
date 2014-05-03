@@ -365,6 +365,6 @@ describe('i18n tests', function(){
             { code: "en", region: "US", quality: 1.0 }
         ]);
 
-        should.not.exist(result.i18n);
+        (result.i18n === undefined).should.eql(true);
     });
 });
