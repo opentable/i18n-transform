@@ -31,6 +31,38 @@ describe('i18n tests', function(){
         result.Language.IETF.should.eql("en-US");
     });
 
+    it('should add the language fields to the destination when using transformDestination', function(){
+      var destinationObject = {};
+      i18n.transformDestination({
+        i18n: [
+          {
+            Name: "gonna drink some beer and shoot some stuff y'all",
+            Language: {
+              IETF: "en-US",
+              Code: "en",
+              Region: "US"
+            }
+          },
+          {
+            Name: "pip pip tally ho crumpets and tea",
+            Language: {
+              IETF: "en-GB",
+              Code: "en",
+              Region: "GB"
+            }
+          }
+        ],
+        PrimaryLanguage: "en-US"
+      },
+      destinationObject,
+      [
+        { code: "en", region: "US", quality: 1.0 }
+      ]);
+
+      destinationObject.Name.should.eql("gonna drink some beer and shoot some stuff y'all");
+      destinationObject.Language.IETF.should.eql("en-US");
+    });
+
     it('should preserve fields in the root of the document', function(){
         var result = i18n.transform({
             DomainId: 123,
