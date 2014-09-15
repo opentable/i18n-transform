@@ -433,9 +433,8 @@ describe('i18n tests', function(){
     });
 
 
-    it('transformDestination should throw an error if language does not exist', function(){
+    it('transformDestination should give an error if language does not exist', function(){
         var error = null;
-        try {
             var result = i18n.transformDestination({
                 DomainId: 123,
                 i18n: [
@@ -451,11 +450,9 @@ describe('i18n tests', function(){
                 PrimaryLanguage: "en-GB"
             }, {}, [
                 { code: "de", region: "DE", quality: 1.0 }
-            ]);
-        }
-        catch(err){
-            error = err;
-        }
+            ], function(err){
+                error = err;
+            });
         (error == null).should.be.false;
     });
 });

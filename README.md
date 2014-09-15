@@ -42,12 +42,12 @@ The languages array should be an array of objects with the following schema:
 
 If language selection fails (no matching languages), then the transform returns null.
 
-#### `.transformDestination({source object}, {destination object}, [languages]);`
+#### `.transformDestination({source object}, {destination object}, [languages], callback function(err));`
 
 This method does the same as the above, but it transforms the destination object with language fields from the source object.
 There is no return value from this method.
 
-If language selection fails (no matching languages), then an Error will be thrown.
+If language selection fails (no matching languages), the callback will contain an error.
 
 ##### Note
 
