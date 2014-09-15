@@ -4,11 +4,11 @@
 
 apply i18n transforms to a json object.
 
-__Methods:__
+### Methods
 
-- `.transform({object}, [languages]);`
+#### `.transform({source}, [languages]);`
 
-The object to be transformed must include an `i18n` field, with the following schema:
+The source object to be transformed must include an `i18n` field, with the following schema:
 
 ```
 {
@@ -40,15 +40,26 @@ The languages array should be an array of objects with the following schema:
 ]
 ```
 
+If language selection fails (no matching languages), then the transform returns null.
+
+#### `.transformDestination({source object}, {destination object}, [languages]);`
+
+This method does the same as the above, but it transforms the destination object with language fields from the source object.
+There is no return value from this method.
+
+If language selection fails (no matching languages), then an Error will be thrown.
+
+##### Note
+
 This module is designed to work with the [accept-language-parser](https://github.com/andyroyle/accept-language-parser).
 
-__Installation:__
+### Installation:
 
 ```
 npm install i18n-transform
 ```
 
-__Usage:__
+### Usage:
 
 ```
 var transformer = require("i18n-transform");

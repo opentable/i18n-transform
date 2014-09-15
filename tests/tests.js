@@ -399,4 +399,63 @@ describe('i18n tests', function(){
 
         (result.i18n === undefined).should.eql(true);
     });
+
+    it('should not break when source.i18n is undefined', function(){
+        var result = i18n.transform({
+            AField: 123,
+            PrimaryLanguage: "en"
+        }, [
+            { code: "En", region: "US", quality: 1 }
+        ]);
+
+        result.AField.should.eql(123);
+    });
+
+    it('should return null if preferred language does not exist', function(){
+        var result = i18n.transform({
+            DomainId: 123,
+            i18n: [
+                {
+                    Name: "pip pip tally ho crumpets and tea",
+                    Language: {
+                        IETF: "en-GB",
+                        Code: "en",
+                        Region: "GB"
+                    }
+                },
+            ],
+            PrimaryLanguage: "en-GB"
+        }, [
+            { code: "de", region: "DE", quality: 1.0 }
+        ]);
+
+        (result == null).should.be.true;
+    });
+
+
+    it('transformDestination should throw an error if language does not exist', function(){
+        var error = null;
+        try {
+            var result = i18n.transformDestination({
+                DomainId: 123,
+                i18n: [
+                    {
+                        Name: "pip pip tally ho crumpets and tea",
+                        Language: {
+                            IETF: "en-GB",
+                            Code: "en",
+                            Region: "GB"
+                        }
+                    },
+                ],
+                PrimaryLanguage: "en-GB"
+            }, {}, [
+                { code: "de", region: "DE", quality: 1.0 }
+            ]);
+        }
+        catch(err){
+            error = err;
+        }
+        (error == null).should.be.false;
+    });
 });
