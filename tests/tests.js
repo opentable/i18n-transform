@@ -31,6 +31,35 @@ describe('i18n tests', function(){
         result.Language.IETF.should.eql("en-US");
     });
 
+    it('should allow us to use I18n instead of i18n for the international array', function(){
+        var result = i18n.transform({
+            I18n: [
+                {
+                    Name: "gonna drink some beer and shoot some stuff y'all",
+                    Language: {
+                        IETF: "en-US",
+                        Code: "en",
+                        Region: "US"
+                    }
+                },
+                {
+                    Name: "pip pip tally ho crumpets and tea",
+                    Language: {
+                        IETF: "en-GB",
+                        Code: "en",
+                        Region: "GB"
+                    }
+                }
+            ],
+            PrimaryLanguage: "en-US"
+        }, [
+            { code: "en", region: "US", quality: 1.0 }
+        ]);
+
+        result.Name.should.eql("gonna drink some beer and shoot some stuff y'all");
+        result.Language.IETF.should.eql("en-US");
+    });
+
     it('should add the language fields to the destination when using transformDestination', function(){
       var destinationObject = {};
       i18n.transformDestination({
@@ -400,6 +429,26 @@ describe('i18n tests', function(){
         (result.i18n === undefined).should.eql(true);
     });
 
+    it('should delete the I18n section if thats what we found', function(){
+        var result = i18n.transform({
+            I18n: [
+                {
+                    Name: "gonna drink some beer and shoot some stuff y'all",
+                    Language: {
+                        IETF: "en-US",
+                        Code: "en",
+                        Region: "US"
+                    }
+                }
+            ],
+            PrimaryLanguage: "en-US"
+        }, [
+            { code: "en", region: "US", quality: 1.0 }
+        ]);
+
+        (result.I18n === undefined).should.eql(true);
+    });
+
     it('should not break when source.i18n is undefined', function(){
         var result = i18n.transform({
             AField: 123,
@@ -454,5 +503,28 @@ describe('i18n tests', function(){
                 error = err;
             });
         (error == null).should.be.false;
+    });
+
+    it('if we ask for * without a primary language then just use whatever comes first', function(){
+        var error = null;
+        var result = i18n.transformDestination({
+            DomainId: 123,
+            i18n: [
+                {
+                    Name: "pip pip tally ho crumpets and tea",
+                    Language: {
+                        IETF: "en-GB",
+                        Code: "en",
+                        Region: "GB"
+                    }
+                },
+            ]
+        }, {}, [
+            { code: "*", quality: 1.0 }
+        ], function(err){
+            error = err;
+        });
+        (error == null).should.be.false;
+        result.Name.should.eql('pip pip tally ho crumpets and tea');
     });
 });
