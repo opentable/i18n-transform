@@ -506,8 +506,7 @@ describe('i18n tests', function(){
     });
 
     it('if we ask for * without a primary language then just use whatever comes first', function(){
-        var error = null;
-        var result = i18n.transformDestination({
+        var result = i18n.transform({
             DomainId: 123,
             i18n: [
                 {
@@ -519,12 +518,10 @@ describe('i18n tests', function(){
                     }
                 },
             ]
-        }, {}, [
+        }, [
             { code: "*", quality: 1.0 }
-        ], function(err){
-            error = err;
-        });
-        (error == null).should.be.false;
+        ]);
+
         result.Name.should.eql('pip pip tally ho crumpets and tea');
     });
 });
