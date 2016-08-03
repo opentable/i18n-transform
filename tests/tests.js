@@ -689,7 +689,7 @@ describe('i18n tansformByFields tests', function () {
             };
         });
 
-        it('should not return optional fields if not present', function () {
+        it('should set optional fields if not present to null', function () {
             var result = i18n.transformByField(translations, [{
                 code: "it",
                 region: "IT",
@@ -704,7 +704,7 @@ describe('i18n tansformByFields tests', function () {
                 ]
             });
 
-            (result.translations.Area === undefined).should.be.true;
+            (result.translations.Area === null).should.be.true;
             (result.localization.Area === undefined).should.be.true;
         });
 
@@ -768,7 +768,7 @@ describe('i18n tansformByFields tests', function () {
                 ]
             });
 
-            (result.translations.PriceBand === undefined).should.be.true;
+            (result.translations.PriceBand === null).should.be.true;
             (result.localization.PriceBand === undefined).should.be.true;
         });
 
