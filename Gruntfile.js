@@ -1,4 +1,4 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
     'use strict';
 
     // Project configuration.
@@ -13,12 +13,17 @@ module.exports = function(grunt) {
                 jshintrc: '.jshintrc'
             }
         },
-        mochaTest:{
+        mochaTest: {
             options: {
                 reporter: 'spec'
             },
-            tests:{
+            tests: {
                 src: ['tests/tests.js']
+            }
+        },
+        mocha_istanbul: {
+            coverage: {
+                src: 'tests', // a folder works nicely
             }
         }
     });
@@ -26,6 +31,8 @@ module.exports = function(grunt) {
     // These plugins provide necessary tasks.
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-mocha-test');
+    grunt.loadNpmTasks('grunt-mocha-istanbul');
     grunt.registerTask('test', ['jshint', 'mochaTest']);
+    grunt.registerTask('coverage', ['mocha_istanbul']);
     grunt.registerTask('default', ['test']);
 };
