@@ -656,6 +656,15 @@ describe('i18n tansformByFields tests', function () {
             translations = {
                 i18n: [
                     {
+                        Name: "pip pip tally ho crumpets and tea",
+                        Description: "This is a description in GB English",
+                        Language: {
+                            IETF: "en-GB",
+                            Code: "en",
+                            Region: "GB"
+                        }
+                    },
+                    {
                         Name: "gonna drink some beer and shoot some stuff y'all",
                         Description: "This is a description in US English",
                         DressCode: "Smart Casual",
@@ -665,15 +674,6 @@ describe('i18n tansformByFields tests', function () {
                             IETF: "en-US",
                             Code: "en",
                             Region: "US"
-                        }
-                    },
-                    {
-                        Name: "pip pip tally ho crumpets and tea",
-                        Description: "This is a description in GB English",
-                        Language: {
-                            IETF: "en-GB",
-                            Code: "en",
-                            Region: "GB"
                         }
                     },
                     {
