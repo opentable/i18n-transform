@@ -799,5 +799,16 @@ describe('i18n tansformByFields tests', function () {
             result.translations.Name.should.eql('gonna drink some beer and shoot some stuff y\'all');
             result.localization.Name.should.eql('en-US');
         });
+
+        it('should select primary language when no accept-lang supplied', function () {
+            var result = i18n.transformByField(translations, [], {
+                required: [
+                    'Name'
+                ]
+            });
+
+            result.translations.Name.should.eql('gonna drink some beer and shoot some stuff y\'all');
+            result.localization.Name.should.eql('en-US');
+        });
     });
 });
