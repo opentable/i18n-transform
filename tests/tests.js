@@ -633,11 +633,11 @@ describe('i18n tansformByFields tests', function () {
                 { code: "fr", region: "CA", quality: 0.6 },
                 { code: "en", region: "GB", quality: 0.4 }],
                 {
-                    required: [
-                        'Name',
-                        'Description'
-                    ],
-                });
+                required: [
+                    'Name',
+                    'Description'
+                ],
+            });
 
             result.translations.Name.should.eql('gonna drink some beer and shoot some stuff y\'all');
             result.translations.Description.should.eql('This is a description in US English');
@@ -678,6 +678,7 @@ describe('i18n tansformByFields tests', function () {
                     },
                     {
                         Name: 'Benvenuti in un mondo di cibo',
+                        Description: null,
                         Language: {
                             IETF: "it-IT",
                             Code: "it",
@@ -809,6 +810,21 @@ describe('i18n tansformByFields tests', function () {
 
             result.translations.Name.should.eql('gonna drink some beer and shoot some stuff y\'all');
             result.localization.Name.should.eql('en-US');
+        });
+
+        it('should not set localization for field when source property is null', function () {
+            var result = i18n.transformByField(translations, [{
+                code: "it",
+                region: "IT",
+                quality: 1.0
+            }], {
+                optional: [
+                    'Description'
+                ]
+            });
+
+            (result.translations.Description === null).should.be.true;
+            (result.localization.Description === undefined).should.be.true;
         });
     });
 });
