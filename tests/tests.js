@@ -674,7 +674,8 @@ describe('i18n tansformByFields tests', function () {
                             IETF: "en-US",
                             Code: "en",
                             Region: "US"
-                        }
+                        },
+                        AddtionalDetails: []
                     },
                     {
                         Name: 'Benvenuti in un mondo di cibo',
@@ -825,6 +826,21 @@ describe('i18n tansformByFields tests', function () {
 
             (result.translations.Description === null).should.be.true;
             (result.localization.Description === undefined).should.be.true;
+        });
+
+        it('should treat empty arrays as a match', function () {
+            var result = i18n.transformByField(translations, [{
+                code: "en",
+                region: "US",
+                quality: 1.0
+            }], {
+                optional: [
+                    'AddtionalDetails'
+                ]
+            });
+
+            result.translations.AddtionalDetails.should.eql([]);
+            result.localization.AddtionalDetails.should.eql('en-US');
         });
     });
 });
