@@ -843,4 +843,41 @@ describe('i18n tansformByFields tests', function () {
             result.localization.AddtionalDetails.should.eql('en-US');
         });
     });
+
+    describe('when there\'s missing primary translations', function () {
+        var translations = null;
+
+        beforeEach(function () {
+            translations = {
+                i18n: [
+                    {
+                        Name: "pip pip tally ho crumpets and tea",
+                        Language: {
+                            IETF: "en-GB",
+                            Code: "en",
+                            Region: "GB"
+                        }
+                    }
+                ],
+                PrimaryLanguage: "fr-CA"
+            };
+        });
+
+        it('should throw an error', function () {
+            var transformFunc = function() {
+                return i18n.transformByField(translations, [{
+                    code: "xx",
+                    region: "XX",
+                    quality: 1.0
+                }], {
+                    required: [
+                        'Name'
+                    ]
+                });
+            };
+
+            transformFunc.should.throw('Primary translations are not available');
+
+        });
+    });
 });
